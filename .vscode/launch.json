@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/Administrator/Desktop/f",
-      "program": "c:/Users/Administrator/Desktop/f/build/Debug/outDebug",
+      "cwd": "c:/Users/Administrator/bankproj",
+      "program": "c:/Users/Administrator/bankproj/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

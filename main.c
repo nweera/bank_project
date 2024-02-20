@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <windows.h>
 #include <stdlib.h>
+int main_exit;
 void menu(); // show a menu on which we will execute banking tasks
 struct date{
     int month, day, year;
@@ -32,7 +33,7 @@ void n_account(){
     FILE *ptr;
     ptr = fopen("record.dat", "a+");
     account_no:
-    system("cls");
+    system("cls"); //clear console
     printf("\t\t\t\xB2\xB2\xB2\  ADD RECORD  \xB2\xB2\xB2\xB2");
     printf("\n\n\nEnter today's date(mm/dd/yyyy):");
     scanf("%d/%d/%d",&add.deposit.month,&add.deposit.day,&add.deposit.year);
@@ -67,5 +68,45 @@ void n_account(){
     fclose(ptr);
     printf("\nAccount created successfully!");
 
-
+    invalid:
+    printf("\n\n\n\t\tEnter 1 to go to the main menu and 0 to exit:");
+    scanf("%d",&main_exit);
+    system("cls");
+    if (main_exit==1)
+        menu();
+    else if(main_exit==0)
+            close();
+    else
+        {
+            printf("\nInvalid!\a");
+            goto invalid;
+        }
+}
+void view_list(){
+    FILE *view;
+    view = fopen("record.dat","r");
+    int test=0;
+    system("cls");
+    printf("\nACC. NO.\tNAME\t\t\tADDRESS\t\t\tPHONE\n");
+    while(fscanf(view,"%d %s %d/%d/%d %d %s %s %lf %s %f %d/%d/%d\n", &add.acc_no,add.name,&add.dob.month,&add.dob.day,&add.dob.year,&add.age,add.address,add.citizenship,&add.phone,add.acc_type,&add.amt,&add.deposit.month,&add.deposit.day,&add.deposit.year)!=EOF){
+        printf("\n%6d\t %10s\t\t\t%10s\t\t%.0lf",add.acc_no,add.name,add.address,add.phone);
+        test++;
+    }
+    fclose(view);
+    if (test==0)
+        {   system("cls");
+            printf("\nNO RECORDS!!\n");}
+    invalid:
+    printf("\n\n\n\t\tEnter 1 to go to the main menu and 0 to exit:");
+    scanf("%d",&main_exit);
+    system("cls");
+    if (main_exit==1)
+        menu();
+    else if(main_exit==0)
+            close();
+    else
+        {
+            printf("\nInvalid!\a");
+            goto invalid;
+        }
 }
